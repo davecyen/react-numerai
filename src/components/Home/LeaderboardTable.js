@@ -27,6 +27,12 @@ const styles = theme => ({
   headerCell: {
     color: '#777',
   },
+  nmrGreen: {
+    color: '#00DB77',
+  },
+  nmrBlue: {
+    color: '#01B8D4',
+  },
 });
 
 let id = 0;
@@ -80,9 +86,9 @@ function LeaderboardTable(props) {
                 <TableCell className={classes.cell} padding="dense">{n.ai}</TableCell>
                 <TableCell className={classes.cell} numeric padding="dense">{n.logloss}</TableCell>
                 <TableCell className={classes.cell} numeric padding="dense">{n.careerUsd}</TableCell>
-                <TableCell className={classes.cell} numeric padding="dense">{n.consistency}</TableCell>
-                <TableCell className={classes.cell} numeric padding="dense">{n.originality}</TableCell>
-                <TableCell className={classes.cell} numeric padding="dense">{n.concordance}</TableCell>
+                <TableCell className={classes.cell + ' ' + classes.nmrGreen} numeric padding="dense">{n.consistency}</TableCell>
+                <TableCell className={classes.cell + ' ' + classes.nmrGreen} numeric padding="dense">{n.originality}</TableCell>
+                <TableCell className={classes.cell + ' ' + classes.nmrGreen} numeric padding="dense">{n.concordance}</TableCell>
                 <TableCell className={classes.cell} numeric padding="dense">{n.careerNmr}</TableCell>
               </TableRow>
             );

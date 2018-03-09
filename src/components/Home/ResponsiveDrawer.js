@@ -15,9 +15,13 @@ import MenuIcon from 'material-ui-icons/Menu';
 import Grid from 'material-ui/Grid';
 import Tabs, { Tab } from 'material-ui/Tabs';
 
+import History from 'material-ui-icons/History';
+import Add from 'material-ui-icons/Add';
+
 import BalancesTable from './BalancesTable';
 import LevelTable from './LevelTable';
 import PerformanceTable from './PerformanceTable';
+import PerformanceTableDark from './PerformanceTableDark';
 import LeaderboardTable from './LeaderboardTable';
 import StakedTable from './StakedTable';
 
@@ -79,6 +83,13 @@ const styles = theme => ({
     overflowY: 'scroll',
     color: '#555',
     padding: 0
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit,
+    fontSize: 18
+  },
+  tab: {
+    textTransform: 'uppercase',
   },
   nmrGreen: {
     color: '#00DB77',
@@ -176,6 +187,7 @@ class ResponsiveDrawer extends React.Component {
               <Hidden smDown>
                 <Grid item sm={4}>
                   <Button as={NavLink} to={routes.TOURNAMENTS} color="secondary">
+                    <History className={classes.leftIcon} />
                     Past Tournaments
                   </Button>
                 </Grid>
@@ -184,13 +196,14 @@ class ResponsiveDrawer extends React.Component {
                 <Typography variant="title" align="center">
                   Tournament 97
                 </Typography>
-                <Typography className={classes.nmrGreen} variant="subheading" align="center">
+                <Typography className={classes.nmrBlue} variant="subheading" align="center">
                   $6,000 USD + 2,000 NMR
                 </Typography>
               </Grid>
               <Hidden smDown>
                 <Grid align="right" item sm={4}>
                   <Button className={classes.nmrBlue} as={NavLink} to={routes.TOURNAMENTS} color="secondary">
+                    <Add className={classes.leftIcon} />
                     Stake Numeraire
                   </Button>
                 </Grid>
@@ -203,8 +216,8 @@ class ResponsiveDrawer extends React.Component {
             centered
             fullWidth
           >
-            <Tab label="All Submissions" />
-            ><Tab label="Staked Submissions" />
+            <Tab className={classes.tab} label="All Submissions" />
+            ><Tab className={classes.tab + ' ' + classes.nmrBlue} label="Staked Submissions" />
           </Tabs>
         </AppBar>
         <Hidden mdUp >
@@ -237,12 +250,13 @@ class ResponsiveDrawer extends React.Component {
           </Drawer>
         </Hidden>
         <main className={classes.content}>
-          <PerformanceTable />
           {this.state.tabValue === 0 &&
-            <LeaderboardTable />
+            <div><PerformanceTable />
+            <LeaderboardTable /></div>
           }
           {this.state.tabValue === 1 &&
-            <StakedTable />
+            <div><PerformanceTableDark />
+            <StakedTable /></div>
           }
         </main>
       </div>

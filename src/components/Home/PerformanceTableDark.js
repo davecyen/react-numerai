@@ -11,7 +11,8 @@ import FileDownload from 'material-ui-icons/FileDownload';
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    padding: 20
+    padding: 20,
+    backgroundColor: '#2b2b2b'
   },
   column: {
     color: '#777',
@@ -20,11 +21,7 @@ const styles = theme => ({
   },
   metric: {
     fontSize:'.875rem',
-    color: '#090909'
-  },
-  secondaryButton: {
-    backgroundColor: '#fff',
-    color: '#030303'
+    color: '#999'
   },
   leftIcon: {
     marginRight: theme.spacing.unit,
@@ -32,7 +29,7 @@ const styles = theme => ({
   },
 });
 
-function PerformanceTable(props) {
+function PerformanceTableDark(props) {
   const { classes } = props;
 
   return (
@@ -82,8 +79,8 @@ function PerformanceTable(props) {
   );
 }
 
-PerformanceTable.propTypes = {
+PerformanceTableDark.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PerformanceTable);
+export default withStyles(styles)(PerformanceTableDark);
