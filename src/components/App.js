@@ -61,12 +61,12 @@ const theme = createMuiTheme({
   },
   mixins: {
     toolbar: {
-      minHeight: 95,
+      minHeight: 75,
       '@media (min-width:0px) and (orientation: landscape)': {
-        minHeight: 95,
+        minHeight: 75,
       },
       '@media (min-width:600px)': {
-        minHeight: 95
+        minHeight: 75
       }
     }
   }

@@ -10,7 +10,6 @@ const styles = theme => ({
     overflowX: 'auto',
     backgroundColor: '#eee',
     boxShadow: 'none',
-    height: '100%',
   },
   table: {
     maxWidth: '100%',

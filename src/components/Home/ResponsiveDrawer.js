@@ -17,6 +17,7 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 
 import BalancesTable from './BalancesTable';
 import LevelTable from './LevelTable';
+import PerformanceTable from './PerformanceTable';
 import LeaderboardTable from './LeaderboardTable';
 import StakedTable from './StakedTable';
 
@@ -58,6 +59,7 @@ const styles = theme => ({
   },
   submenu: {
     marginTop: 20,
+    paddingBottom: 30
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
@@ -72,8 +74,8 @@ const styles = theme => ({
     flexGrow: 1,
     backgroundColor: 'theme.palette.background.default',
     padding: theme.spacing.unit * 3,
-    marginTop: 143,
-    height: 'calc(100vh - 143px)',
+    marginTop: 123,
+    height: 'calc(100vh - 123px)',
     overflowY: 'scroll',
     color: '#555',
     padding: 0
@@ -171,7 +173,7 @@ class ResponsiveDrawer extends React.Component {
               <MenuIcon />
             </IconButton>
             <Grid container justify="center" alignItems="center" spacing={24}>
-              <Hidden xsDown>
+              <Hidden smDown>
                 <Grid item sm={4}>
                   <Button as={NavLink} to={routes.TOURNAMENTS} color="secondary">
                     Past Tournaments
@@ -186,7 +188,7 @@ class ResponsiveDrawer extends React.Component {
                   $6,000 USD + 2,000 NMR
                 </Typography>
               </Grid>
-              <Hidden xsDown>
+              <Hidden smDown>
                 <Grid align="right" item sm={4}>
                   <Button className={classes.nmrBlue} as={NavLink} to={routes.TOURNAMENTS} color="secondary">
                     Stake Numeraire
@@ -235,6 +237,7 @@ class ResponsiveDrawer extends React.Component {
           </Drawer>
         </Hidden>
         <main className={classes.content}>
+          <PerformanceTable />
           {this.state.tabValue === 0 &&
             <LeaderboardTable />
           }
