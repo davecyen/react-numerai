@@ -14,10 +14,10 @@ const styles = theme => ({
     textAlign: 'left',
     color: '#777',
     textTransform: 'uppercase',
-    fontSize: 10
+    fontSize: '.625rem'
   },
   metric: {
-    fontSize: 14,
+    fontSize:'.875rem',
     color: '#090909'
   },
   secondaryButton: {
@@ -32,23 +32,28 @@ function PerformanceTable(props) {
   return (
     <div className={classes.root}>
       <Grid container justify="space-between" alignItems="center" spacing={24}>
-        <Grid item xs="6" sm>
-          <div className={classes.column}>My Current Rank</div>
+        <Grid item xs="2" sm>
+          <Hidden xsDown>
+            <div className={classes.column}>My Current Rank</div>
+          </Hidden>
+          <Hidden smUp>
+            <div className={classes.column}>Rank</div>
+          </Hidden>
           <div className={classes.metric}>Unranked</div>
         </Grid>
-        <Grid item xs="6" sm>
+        <Grid item xs="2" sm>
           <div className={classes.column}>Logloss</div>
           <div className={classes.metric}>N/A</div>
         </Grid>
-        <Grid item xs="4" sm>
+        <Grid item xs="2" sm>
           <div className={classes.column}>Consistency</div>
           <div className={classes.metric}>N/A</div>
         </Grid>
-        <Grid item xs="4" sm>
+        <Grid item xs="2" sm>
           <div className={classes.column}>Originality</div>
           <div className={classes.metric}>N/A</div>
         </Grid>
-        <Grid item xs="4" sm>
+        <Grid item xs="2" sm>
           <div className={classes.column}>Concordance</div>
           <div className={classes.metric}>N/A</div>
         </Grid>
