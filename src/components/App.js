@@ -8,8 +8,16 @@ import Balances from './Balances/Balances';
 
 import * as routes from '../constants/routes';
 
+import fontawesome from '@fortawesome/fontawesome'
+import brands from '@fortawesome/fontawesome-free-brands'
+import faUser from '@fortawesome/fontawesome-free-solid/faUser'
+import faQuestion from '@fortawesome/fontawesome-free-solid/faQuestion'
+import faComments from '@fortawesome/fontawesome-free-solid/faComments'
+import faCode from '@fortawesome/fontawesome-free-solid/faCode'
+
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import { red } from 'material-ui/colors';
+
+fontawesome.library.add(brands, faUser, faQuestion, faComments, faCode);
 
 const theme = createMuiTheme({
   palette: {
