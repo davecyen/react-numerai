@@ -8,16 +8,7 @@ import Balances from './Balances/Balances';
 
 import * as routes from '../constants/routes';
 
-import fontawesome from '@fortawesome/fontawesome'
-import brands from '@fortawesome/fontawesome-free-brands'
-import faUser from '@fortawesome/fontawesome-free-solid/faUser'
-import faQuestion from '@fortawesome/fontawesome-free-solid/faQuestion'
-import faComments from '@fortawesome/fontawesome-free-solid/faComments'
-import faCode from '@fortawesome/fontawesome-free-solid/faCode'
-
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-
-fontawesome.library.add(brands, faUser, faQuestion, faComments, faCode);
 
 const theme = createMuiTheme({
   palette: {
@@ -43,6 +34,7 @@ const theme = createMuiTheme({
     },
     background: {
       paper: '#030303',
+      default: '#fff',
     }
   },
   typography: {
@@ -58,6 +50,24 @@ const theme = createMuiTheme({
     display1: {
       color: '#fff',
       fontFamily: 'Roboto, sans-serif'
+    },
+    title: {
+      fontSize: 20,
+      textTransform: 'uppercase',
+    },
+    subheading: {
+      fontSize: 13
+    }
+  },
+  mixins: {
+    toolbar: {
+      minHeight: 95,
+      '@media (min-width:0px) and (orientation: landscape)': {
+        minHeight: 95,
+      },
+      '@media (min-width:600px)': {
+        minHeight: 95
+      }
     }
   }
 });
