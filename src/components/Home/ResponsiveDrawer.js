@@ -13,7 +13,6 @@ import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 import MenuIcon from 'material-ui-icons/Menu';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 
 import BalancesTable from './BalancesTable';
 import LevelTable from './LevelTable';
@@ -69,18 +68,18 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(link, faIcon) {
+function createData(link) {
   id += 1;
-  return { id, link, faIcon };
+  return { id, link};
 }
 
 const data = [
-  createData('Account', 'user'),
-  createData('API', 'code'),
-  createData('Chat', 'comments'),
-  createData('Reddit', ["fab", "reddit-alien"]),
-  createData('Blog', ["fab", "medium-m"]),
-  createData('Help', 'question'),
+  createData('Account'),
+  createData('API'),
+  createData('Chat'),
+  createData('Reddit'),
+  createData('Blog'),
+  createData('Help'),
 ];
 
 class ResponsiveDrawer extends React.Component {
@@ -110,10 +109,9 @@ class ResponsiveDrawer extends React.Component {
         <List className={classes.submenu} component="nav">
           {data.map(n => {
             return (
-              <Button key={n.id} size="small" fullWidth>
-                <FontAwesomeIcon icon={n.faIcon} />
-                {n.link}
-              </Button>
+              <ListItem key={n.id} button dense>
+                <ListItemText style={{paddingLeft: 40}} inset primary={n.link} />
+              </ListItem>
             );
           })}
         </List>
