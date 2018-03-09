@@ -6,16 +6,16 @@ import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/Button';
 import Hidden from 'material-ui/Hidden';
 import Divider from 'material-ui/Divider';
 import MenuIcon from 'material-ui-icons/Menu';
-import StarIcon from 'material-ui-icons/Star';
 
 import BalancesTable from './BalancesTable';
+import LevelTable from './LevelTable';
 
 import * as routes from '../../constants/routes';
 
@@ -39,14 +39,23 @@ const styles = theme => ({
       width: `calc(100% - ${drawerWidth}px)`,
     },
   },
+  username: {
+    textTransform: 'uppercase',
+    fontSize: 20,
+    marginTop: 20,
+  },
   navIconHide: {
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
   },
+  submenu: {
+    marginTop: 20,
+  },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    boxShadow: '2px 0 8px 0 rgba(0,0,0,0.5)',
     [theme.breakpoints.up('md')]: {
       position: 'relative',
     },
@@ -57,6 +66,21 @@ const styles = theme => ({
     padding: theme.spacing.unit * 3,
   }
 });
+
+let id = 0;
+function createData(link) {
+  id += 1;
+  return { id, link};
+}
+
+const data = [
+  createData('Account'),
+  createData('API'),
+  createData('Chat'),
+  createData('Reddit'),
+  createData('Blog'),
+  createData('Help'),
+];
 
 class ResponsiveDrawer extends React.Component {
   state = {
@@ -77,41 +101,19 @@ class ResponsiveDrawer extends React.Component {
         </Toolbar>
         <Divider />
 
-        <NavLink
-          exact
-          to={routes.PROFILE}>
-          <Typography variant="subheading" gutterBottom>
-            {username}
-          </Typography>
-        </NavLink>
+        <Button className={classes.username} as={NavLink} to={routes.PROFILE} color="secondary" size="large">
+          {username}
+        </Button>
         <BalancesTable />
-        <List>
-          <ListItem button>
-            <ListItemIcon>
-              <StarIcon />
-            </ListItemIcon>
-            <ListItemText inset primary="LEVEL" />
-          </ListItem>
-        </List>
-        <List component="nav">
-          <ListItem button>
-            <ListItemText inset primary="Account" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText inset primary="API" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText inset primary="Chat" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText inset primary="Reddit" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText inset primary="Blog" />
-          </ListItem>
-          <ListItem button>
-            <ListItemText inset primary="Help" />
-          </ListItem>
+        <LevelTable />
+        <List className={classes.submenu} component="nav">
+          {data.map(n => {
+            return (
+              <ListItem key={n.id} button dense>
+                <ListItemText style={{paddingLeft: 40}} inset primary={n.link} />
+              </ListItem>
+            );
+          })}
         </List>
       </div>
     );
@@ -128,9 +130,9 @@ class ResponsiveDrawer extends React.Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" noWrap>
-              Responsive drawer
-            </Typography>
+            <Button as={NavLink} to={routes.TOURNAMENTS} color="secondary">
+              Past Tournaments
+            </Button>
           </Toolbar>
         </AppBar>
         <Hidden mdUp>

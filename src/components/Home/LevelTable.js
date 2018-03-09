@@ -1,26 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { NavLink } from 'react-router-dom';
-
-import Button from 'material-ui/Button';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
-import TimelineIcon from 'material-ui-icons/Timeline';
-
-import * as routes from '../../constants/routes';
+import StarIcon from 'material-ui-icons/Star';
 
 const styles = theme => ({
   table: {
     fontSize: 14,
-    marginTop: 20,
+    marginTop: 30,
+    marginBottom: 30,
   },
   bodyCell: {
     border: 0,
     color: '#999',
-  },
-  withdraw: {
-    marginLeft: 30,
-    width: '100%'
   },
   row: {
     height: 36,
@@ -54,17 +46,20 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(currency, amount) {
+function createData(step) {
   id += 1;
-  return { id, currency, amount};
+  return { id, step};
 }
 
 const data = [
-  createData('Numeraire', '0.00'),
-  createData('USD', '$0.00'),
+  createData('Verify your account via SMS'),
+  createData('Enable 2FA'),
+  createData('Download 1st dataset'),
+  createData('Upload 1st predictions'),
+  createData('Stake NMR in a tournament'),
 ];
 
-function BalancesTable(props) {
+function LevelTable(props) {
   const { classes } = props;
 
   return (
@@ -72,11 +67,11 @@ function BalancesTable(props) {
       <TableHead>
         <TableRow className={classes.row}>
           <TableCell className={classes.headerLeftCell + ' ' + classes.headerCell}>
-            <TimelineIcon className={classes.headerIcon} />
-            Balances
+            <StarIcon className={classes.headerIcon} />
+            Level
           </TableCell>
           <TableCell numeric className={classes.headerRightCell + ' ' + classes.headerCell}>
-            1 NMR = $23.41
+            Novice
           </TableCell>
         </TableRow>
       </TableHead>
@@ -84,22 +79,18 @@ function BalancesTable(props) {
         {data.map(n => {
           return (
             <TableRow key={n.id} className={classes.row}>
-              <TableCell className={classes.leftCell + ' ' + classes.bodyCell}>{n.currency}</TableCell>
-              <TableCell numeric className={classes.rightCell + ' ' + classes.bodyCell}>{n.amount}</TableCell>
+              <TableCell colspan="2" className={classes.leftCell + ' ' + classes.bodyCell}>{n.step}</TableCell>
             </TableRow>
           );
         })}
-        <TableRow>
-          <Button className={classes.withdraw} as={NavLink} to={routes.BALANCES} color="secondary" size="small">Withdraw / Deposit</Button>
-        </TableRow>
       </TableBody>
     </Table>
   );
 }
 
-BalancesTable.propTypes = {
+LevelTable.propTypes = {
   children: PropTypes.node,
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BalancesTable);
+export default withStyles(styles)(LevelTable);
