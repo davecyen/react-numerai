@@ -39,10 +39,14 @@ const styles = theme => ({
       width: `calc(100% - ${drawerWidth}px)`,
     },
   },
+  logo: {
+    height: 45,
+    marginTop: 25
+  },
   username: {
     textTransform: 'uppercase',
-    fontSize: 20,
-    marginTop: 20,
+    fontSize: 18,
+    marginTop: 35,
   },
   navIconHide: {
     [theme.breakpoints.up('md')]: {
@@ -97,10 +101,8 @@ class ResponsiveDrawer extends React.Component {
     const drawer = (
       <div className={classes.drawer}>
         <Toolbar>
-          Numerai
+          <img src={require('../../public/images/numerai-black.png')} alt="Numerai" className={classes.logo} />
         </Toolbar>
-        <Divider />
-
         <Button className={classes.username} as={NavLink} to={routes.PROFILE} color="secondary" size="large">
           {username}
         </Button>
@@ -110,7 +112,7 @@ class ResponsiveDrawer extends React.Component {
           {data.map(n => {
             return (
               <ListItem key={n.id} button dense>
-                <ListItemText style={{paddingLeft: 40}} inset primary={n.link} />
+                <ListItemText style={{paddingLeft: 0}} inset primary={n.link} />
               </ListItem>
             );
           })}
